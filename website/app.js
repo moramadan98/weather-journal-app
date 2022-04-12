@@ -5,14 +5,15 @@ const apiKey = '9567b56fa8e3da4bf2d12137cddba73f&units=imperial'
 
 // Create a new date instance dynamically with JS
 let d = new Date();
-let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
+
+let newDate = d.getMonth() + 1 + "." + d.getDate() + "." + d.getFullYear();
+
+
 
 // generateBtn
 const generate = document.getElementById('generate');
 
-
-generate.addEventListener('click', (e)=>{
-
+function action(e){
     e.preventDefault();
 
     //get user input
@@ -30,7 +31,13 @@ generate.addEventListener('click', (e)=>{
             }).catch((err)=> {
                 console.log(err);
             });  
-});
+}
+
+
+
+generate.addEventListener('click',action );
+
+
 
 
 
@@ -75,8 +82,8 @@ const getData = async() => {
         console.log(allData);
         // update new entry values
         
-        document.getElementById('date').innerHTML = allData.date;
-        document.getElementById('temp').innerHTML = Math.round( allData.temp) + ' degree ';
+        document.getElementById('date').innerHTML = `Date: ${allData.date}` ;
+        document.getElementById('temp').innerHTML =  `Temperature: ${Math.round( allData.temp)} C°`;
         document.getElementById('content').innerHTML = allData.content;
         
     } catch (error) {
